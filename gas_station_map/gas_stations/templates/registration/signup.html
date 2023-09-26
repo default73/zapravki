@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background-color: #F5F5DC;
+}
+
+.container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+}
+
+form {
+    width: 50%;
+    max-width: 500px;
+    background-color: #FFF;
+    padding: 20px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+form input[type="text"], form input[type="password"], form input[type="email"] {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    border: 1px solid #DDD;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+    </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Регистрация</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+    <p>Если у вас уже есть аккаунт, вы можете <a href="{% url 'login' %}">войти</a>.</p>
+  </div>
+</body>
+</html>

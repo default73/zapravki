@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>История заказов</title>
+    <style>
+      html, body {
+          height: 100%;
+          width: 100%;
+          margin: 0;
+          background-color: #F5F5DC;
+          overflow: hidden;
+        }
+      table {
+        border-collapse: collapse;
+      }
+
+      table, th, td {
+        border: 1px solid black;
+        padding: 5px;
+        text-align: center;
+      }
+      /* Стили первой строки таблицы */
+        table th {
+          background-color: #4CAF50;
+          color: white;
+        }
+
+        #menu {
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          height: 3vh;
+          width: 80%;
+          background-color: #fff;
+          border-top: 1px solid #ccc;
+          padding: 1vh;
+          text-align: center;
+        }
+
+
+        /* Стили кнопок меню */
+        #menu button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        #menu a:last-child {
+            float: right;
+        }
+        #map-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40vw;
+            height: 20vh;
+        }
+    </style>
+</head>
+<body>
+  <table id="map-container">
+    <thead>
+        <tr>
+            <th>Заправочная станция</th>
+            <th>Топливо</th>
+            <th>Дата</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for payment in payments %}
+            <tr>
+                <td>{{ payment.gas_station }}</td>
+                <td>{{ payment.fuel_type }}</td>
+                <td>{{ payment.date }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="3">Вы еще не совершали покупки</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </div>
+    <div id="menu">
+        <script>
+                document.write('<button onclick="goBack()">Назад</button>');
+                function goBack() {
+                    window.history.back();
+                }
+        </script>
+        <a href="{% url 'gas_stations_map' %}">
+        <button>На главную</button>
+        </a>
+        <a href="{% url 'logout' %}">
+            <button>Выйти</button>
+        </a>
+    </div>
+</table>
+</body>
+</html>

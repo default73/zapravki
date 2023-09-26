@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #F5F5DC;
+        overflow: hidden;
+      }
+
+      .container {
+        text-align: center;
+      }
+
+      .container h1 {
+        margin-bottom: 20px;
+      }
+      button[type="submit"] {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #3e8e41;
+      }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h1>Оплата</h1>
+    <h2>Доступные карты</h2>
+    <ul>
+        {% for card in cards %}
+            <li>
+                {{ card.card_number }}
+            <form method="post" action="{% url 'payment_confirm' %}">
+                {% csrf_token %}
+                <input type="hidden" name="station_id" value="{{ gas_station }}">
+                <input type="hidden" name="fuel_id" value="{{ fuel_id }}">
+                <button type="submit">Выбрать и оплатить</button>
+            </form>
+            </li>
+        {% empty %}
+            <li>Вы еще не добавили карту</li>
+        {% endfor %}
+    </ul>
+    <h2>Добавить новую карту</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Добавить</button>
+    </form>
+    </div>
+</body>
+</html>

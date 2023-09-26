@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gas Stations Map</title>
+    <style>
+        html,
+        body {
+          height: 100%;
+          width: 100%;
+          margin: 0;
+          background-color: #F5F5DC;
+          overflow: hidden;
+        }
+
+        #menu {
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          height: 3vh;
+          width: 80%;
+          background-color: #fff;
+          border-top: 1px solid #ccc;
+          padding: 1vh;
+          text-align: center;
+        }
+
+        /* Стили кнопок меню */
+        #menu a:last-child {
+            float: right;
+        }
+        #menu button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        {{map|safe}}
+    </div>
+    <div id="menu">
+    <script>
+            document.write('<button onclick="goBack()">Назад</button>');
+            function goBack() {
+                window.history.back();
+            }
+    </script>
+    <a href="{% url 'gas_stations_map' %}">
+    <button>На главную</button>
+    </a>
+    <a href="{% url 'payment_view' %}">
+    <button>История оплат</button>
+    </a>
+    <a href="{% url 'logout' %}">
+        <button>Выйти</button>
+    </a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  background-color: #F5F5DC;
+}
+
+.container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  margin: 10px;
+}
+
+input {
+  padding: 10px;
+  margin: 10px;
+  width: 300px;
+  border: none;
+  border-radius: 5px;
+  background-color: #EEE;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: #FFF;
+  font-size: 16px;
+  cursor: pointer;
+
+}
+      .container h2 {
+        margin-bottom: 20px;
+        text-align: center;
+        font-size: 24px;
+      }
+
+      </style>
+</head>
+<body>
+<div class="container">
+  <h2>Вход</h2>
+  <form method="post">
+    {% csrf_token %}
+    <label for="username">Имя пользователя:</label>
+    <input type="text" name="username" required><br><br>
+    <label for="password">Пароль:</label>
+    <input type="password" name="password" required><br><br>
+    <button type="submit">Войти</button>
+  </form>
+      <div style="margin-top: 20px">
+        <p>Если у вас еще нет аккаунта, вы можете <a href="{% url 'signup' %}">зарегистрироваться</a>.</p>
+    </div>
+</div>
+</body>
+</html>
